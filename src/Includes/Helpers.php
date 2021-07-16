@@ -45,7 +45,7 @@ class Helpers {
 		$domain           = $settings['domain_name'];
 		$default_domain   = 'plausible.io';
 		$is_outbound_link = apply_filters( 'plausible_analytics_enable_outbound_links', true );
-		$file_name        = $is_outbound_link ? 'plausible.outbound-links' : 'plausible';
+		$file_name        = apply_filters( 'plausible_analytics_file_name', $is_outbound_link ? 'plausible.outbound-links' : 'plausible' );
 
 		// Triggered when self hosted analytics is enabled.
 		if (
@@ -66,7 +66,7 @@ class Helpers {
 			$url                  = "https://{$custom_domain_prefix}.{$domain}/js/{$file_name}.js";
 		}
 
-		return $url;
+		return apply_filters( 'plausible_analytics_url', $url );
 	}
 
 	/**
